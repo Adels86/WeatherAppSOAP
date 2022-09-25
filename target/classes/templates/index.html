@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Welcome with message</title>
+    <link rel="stylesheet" href="/css/styles.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css"/>
+
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+                <div class="nav col-12 col-lg-auto me-lg-auto mb-2 align-items-center justify-content-center mb-md-0" style="margin-top: 25%">
+                    <header class="header col-4 ">Choose the weather for your cities</header>
+
+        <form method="post" class="formlogin" th:action="@{/cities}" th:object="${emptyOrder}">
+
+            <input type="checkbox" class="btn-check" name="Berlin" id="Berlin" autocomplete="off"
+                   th:checked="${emptyOrder.getBerlin()}"/>
+            <label class="btn btn-group" for="Berlin">Berlin</label>
+
+            <input type="checkbox" class="btn-check" name="London" id="London" autocomplete="off"
+                   th:checked="${emptyOrder.getLondon()}"/>
+            <label class="btn btn-group" for="London">London</label>
+
+            <input type="checkbox" class="btn-check" name="Madrid" id="Madrid" autocomplete="off"
+                   th:checked="${emptyOrder.getLondon()}"/>
+            <label class="btn btn-group" for="Madrid">Madrid</label>
+
+            <input type="checkbox" class="btn-check" name="Paris" id="Paris" autocomplete="off"
+                   th:checked="${emptyOrder.getParis()}"/>
+            <label class="btn btn-group" for="Paris">Paris</label>
+
+            <input type="checkbox" class="btn-check" name="Rome" id="Rome" autocomplete="off"
+                   th:checked="${emptyOrder.getRome()}"/>
+            <label class="btn btn-group" for="Rome">Rome</label>
+
+            <input type="checkbox" class="btn-check" name="Sydney" id="Sydney" autocomplete="off"
+                   th:checked="${emptyOrder.getSydney()}"/>
+            <label class="btn btn-group" for="Sydney">Sydney</label>
+
+            <input type="checkbox" class="btn-check" name="Tokio" id="Tokio" autocomplete="off"
+                   th:checked="${emptyOrder.getTokio()}"/>
+            <label class="btn btn-group" for="Tokio">Tokio</label>
+
+            <input type="checkbox" class="btn-check" name="Warsaw" id="Warsaw" autocomplete="off"
+                   th:checked="${emptyOrder.getWarsaw()}"/>
+            <label class="btn btn-group" for="Warsaw">Warsaw</label>
+
+            <input type="checkbox" class="btn-check" name="Zocca" id="Zocca" autocomplete="off"
+                   th:checked="${emptyOrder.getZocca()}"/>
+            <label class="btn btn-group" for="Zocca">Zocca</label>
+
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+    </div>
+</div>
+</div>
+
+</body>
+<script type="text/javascript" src="/js/order.js"></script>
+
+
+</html>
