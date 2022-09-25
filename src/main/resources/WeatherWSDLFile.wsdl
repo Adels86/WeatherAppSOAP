@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://atos.net/WeatherWSDLFile/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  name="WeatherWSDLFile" targetNamespace="http://atos.net/WeatherWSDLFile/">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://atos.net/WeatherWSDLFile/">
+
+            <xsd:element name="WeatherRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="city" nillable="true" type="xsd:string"/>
+                        <xsd:element name="id" nillable="true" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="WeatherResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="temperature" nillable="true" type="xsd:double"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="weatherFault" type="xsd:string" />
+
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="OperationRequest">
+        <wsdl:part element="tns:WeatherRequest" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="WeatherResponse">
+        <wsdl:part element="tns:WeatherResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="weatherFault">
+        <wsdl:part element="tns:weatherFault" name="parameters"/>
+    </wsdl:message>
+
+    <wsdl:portType name="WeatherWSDLFilePortType">
+        <wsdl:operation name="WeatherRequest">
+            <wsdl:input message="tns:OperationRequest"/>
+            <wsdl:output message="tns:WeatherResponse"/>
+            <wsdl:fault name="weatherFault" message="tns:weatherFault" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="WeatherWSDLFileSOAP" type="tns:WeatherWSDLFilePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="WeatherRequest">
+            <soap:operation soapAction="WeatherRequest"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="weatherFault"  >
+                <soap:fault name="weatherFault" use="literal" />
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="WeatherWSDLFileService">
+        <wsdl:port binding="tns:WeatherWSDLFileSOAP" name="WeatherWSDLFileSOAP">
+            <soap:address location="http://localhost:8080/WeatherWSDLFile/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

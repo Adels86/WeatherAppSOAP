@@ -1,0 +1,28 @@
+spring:
+    h2:
+      console:
+       enabled: true
+       path: /h2-console
+    datasource:
+      url: jdbc:h2:mem:city_db;INIT=CREATE SCHEMA IF NOT EXISTS city_db
+      username: sa
+      password:
+    jpa:
+      hibernate:
+        ddl-auto: create
+      properties:
+        hibernate:
+          dialect:
+            org:
+              hibernate:dialect: org.hibernate.dialect.H2Dialect
+
+#open weather key
+api_key: 0c82e654e101ff1ac3e346c6a27d1ea1
+
+#open weather url
+api_url: https://api.openweathermap.org/data/2.5/
+
+#open weather icon url
+icon_key: http://openweathermap.org/img/wn/
+server:
+  port : 8081

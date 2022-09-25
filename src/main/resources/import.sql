@@ -1,0 +1,10 @@
+insert into city (city_id, lat, lon, name) values(1, 44.347,10.990,'Zocca');
+insert into city (city_id, lat, lon, name) values(2, 52.230,21.012,'Warsaw');
+insert into city (city_id, lat, lon, name) values(3, 51.508,-0.126,'London');
+insert into city (city_id, lat, lon, name) values(4, 48.853,2.349,'Paris');
+insert into city (city_id, lat, lon, name) values(5, 34.257,-85.165,'Rome');
+insert into city (city_id, lat, lon, name) values(6, 40.7143,-74.006,'New_York');
+insert into city (city_id, lat, lon, name) values(7, 40.416,-3.703,'Madrit');
+insert into city (city_id, lat, lon, name) values(8, 52.524,13.411,'Berlin');
+insert into city (city_id, lat, lon, name) values(9, 35.6895,139.6917,'Tokio');
+insert into city (city_id, lat, lon, name) values(10, -33.868,151.207,'Sydney');
