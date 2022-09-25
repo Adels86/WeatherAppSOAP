@@ -4,8 +4,8 @@ import net.atos.weatherSoap.demo.model.UserOrder;
 
 
 public class UserOrderNotFoundException extends RuntimeException {
-    public UserOrderNotFoundException(String name) {
-        super("Could not find order from user: " + name);
+    public UserOrderNotFoundException() {
+        super("couldn't find cities");
     }
 
 

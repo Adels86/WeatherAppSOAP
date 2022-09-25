@@ -30,17 +30,12 @@ public class WeatherRepository {
     public double getTemp(String city) {
 
         City result = cityRepository.findByName(city);
-        log.info("" + result.getLon());
         if (result == null) {
             throw new CityNotFoundException(result.getName());
         }
         OpenWeather weatherFromApi = weatherClient.getWeatherForCoordinates( result.getLat(),result.getLon());
         if (weatherFromApi == null) {
-            try {
-                throw new WeatherFault("could not find ", city);
-            } catch (WeatherFault e) {
-                throw new UserOrderNotFoundException(city);
-            }
+            throw new UserOrderNotFoundException();
         }
         return weatherFromApi.getTempCelsius();
     }

@@ -41,7 +41,7 @@ public class WeatherController {
     @GetMapping(path = "/order")
     public String getOrders(ModelMap modelMap) {
         if (userOrder == null) {
-            throw new UserOrderNotFoundException("fault");
+            throw new UserOrderNotFoundException();
         }
         List<OpenWeather> openWeathers = getWeatherByCoordinates();
         List<OpenWeather> orderedWeathers = new ArrayList<>();
@@ -74,7 +74,7 @@ public class WeatherController {
             orderedWeathers.add(openWeathers.get(9));
         }
         if (orderedWeathers.isEmpty()) {
-            throw new UserOrderNotFoundException("fault");
+            throw new UserOrderNotFoundException();
         }
 
         modelMap.addAttribute("orderedWeathers", orderedWeathers);
