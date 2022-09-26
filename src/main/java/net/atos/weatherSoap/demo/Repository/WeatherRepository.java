@@ -1,11 +1,6 @@
 package net.atos.weatherSoap.demo.Repository;
 
-import com.example.demo.WeatherFault;
-import com.example.demo.WeatherResponse;
 import lombok.extern.slf4j.Slf4j;
-import net.atos.weatherSoap.demo.Service.CityService;
-import net.atos.weatherSoap.demo.exception.CityNotFoundException;
-import net.atos.weatherSoap.demo.exception.UserOrderNotFoundException;
 import net.atos.weatherSoap.demo.model.Entity.City;
 import net.atos.weatherSoap.demo.model.OpenWeather;
 import net.atos.weatherSoap.demo.weatherclient.WeatherClient;
@@ -21,22 +16,9 @@ public class WeatherRepository {
     @Autowired
     WeatherClient weatherClient;
 
-
-//    @PostConstruct
-//    public void initData(){
-//        temps.put("Berlin", 20.0);
-//    }
-
     public double getTemp(String city) {
-
         City result = cityRepository.findByName(city);
-        if (result == null) {
-            throw new CityNotFoundException(result.getName());
-        }
-        OpenWeather weatherFromApi = weatherClient.getWeatherForCoordinates( result.getLat(),result.getLon());
-        if (weatherFromApi == null) {
-            throw new UserOrderNotFoundException();
-        }
+        OpenWeather weatherFromApi = weatherClient.getWeatherForCoordinates(result.getLat(), result.getLon());
         return weatherFromApi.getTempCelsius();
     }
 

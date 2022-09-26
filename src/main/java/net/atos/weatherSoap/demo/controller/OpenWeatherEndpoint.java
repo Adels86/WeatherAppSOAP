@@ -1,4 +1,4 @@
-package net.atos.weatherSoap.demo;
+package net.atos.weatherSoap.demo.controller;
 
 import com.example.demo.WeatherFault;
 import com.example.demo.WeatherFaultMessage;
@@ -6,7 +6,6 @@ import com.example.demo.WeatherRequest;
 import com.example.demo.WeatherResponse;
 import lombok.extern.slf4j.Slf4j;
 import net.atos.weatherSoap.demo.Repository.WeatherRepository;
-import net.atos.weatherSoap.demo.exception.UserOrderNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -26,17 +25,15 @@ public class OpenWeatherEndpoint {
     @PayloadRoot(namespace = "http://atos.net/WeatherWSDLFile/", localPart = "WeatherRequest")
     @ResponsePayload
     public WeatherResponse getWeather(@RequestPayload WeatherRequest request) throws WeatherFaultMessage {
-            try {
-                WeatherResponse weatherResponse = new WeatherResponse();
-                weatherResponse.setTemperature(weatherRepository.getTemp(request.getCity()));
-
-                return weatherResponse;
-            } catch (Exception e){
-                WeatherFault weatherFault = new WeatherFault();
-                weatherFault.setDoc(e.getMessage());
-                throw new WeatherFaultMessage("couldn't find weather for city", weatherFault);
-            }
-
-
+        try {
+            WeatherResponse weatherResponse = new WeatherResponse();
+            weatherResponse.setTemperature(weatherRepository.getTemp(request.getCity()));
+            return weatherResponse;
+        } catch (Exception e) {
+            WeatherFault weatherFault = new WeatherFault();
+            weatherFault.setDoc(e.getMessage());
+            throw new WeatherFaultMessage("couldn't find weather for : " + request.getCity(), weatherFault);
+        }
     }
 }
+
