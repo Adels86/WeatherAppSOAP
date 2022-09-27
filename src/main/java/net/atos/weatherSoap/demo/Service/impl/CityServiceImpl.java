@@ -1,4 +1,6 @@
 package net.atos.weatherSoap.demo.Service.impl;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.atos.weatherSoap.demo.Repository.CityRepository;
 import net.atos.weatherSoap.demo.Service.CityService;
@@ -11,12 +13,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
+@AllArgsConstructor
+@NoArgsConstructor
 public class CityServiceImpl implements CityService {
     @Autowired
     private CityRepository cityRepository;
 
     @Autowired
     private WeatherClient weatherClient;
+
+
 
     @Override
     public OpenWeather getWeatherFromApi(double lon, double lat) {
